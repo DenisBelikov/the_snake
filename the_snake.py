@@ -29,7 +29,6 @@ SPEED = 20
 class GameObject:
     """Базовый класс для игровых объектов"""
 
-
     def __init__(self, position):
         """Инициализация позиции объекта"""
         self.position = position
@@ -42,6 +41,7 @@ class GameObject:
 
 class Apple(GameObject):
     """Класс для яблока"""
+
 
     def __init__(self):
         """Инициализация, установка случайной позиции для яблока"""
@@ -112,6 +112,7 @@ class Snake(GameObject):
 
 def main():
     """Главная функция игры"""
+
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), 0, 32)
     pygame.display.set_caption('Змейка')
