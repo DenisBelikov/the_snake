@@ -26,11 +26,7 @@ SNAKE_COLOR = (0, 255, 0)  # Цвет змейки
 SPEED = 20
 
 
-<<<<<<< HEAD
-class Game_Object:
-=======
 class GameObject:
->>>>>>> bcb4df2b815d49016022d52b20111c5aa07868db
     """Базовый класс для игровых объектов"""
 
     def __init__(self, position):
@@ -39,14 +35,8 @@ class GameObject:
 
     def draw(self, screen):
         """Рисование объекта на экране"""
-<<<<<<< HEAD
         raise NotImplementedError("Этот метод должен быть переопределён в
                                    подклассах")
-=======
-        raise NotImplementedError(
-            "Этот метод должен быть переопределён в подклассах"
-        )
->>>>>>> bcb4df2b815d49016022d52b20111c5aa07868db
 
 
 class Apple(GameObject):
@@ -54,14 +44,8 @@ class Apple(GameObject):
 
     def __init__(self):
         """Инициализация, установка случайной позиции для яблока"""
-<<<<<<< HEAD
         super().__init__((randint(0, GRID_WIDTH - 1) * GRID_SIZE,
                           randint(0, GRID_HEIGHT - 1) * GRID_SIZE)
-=======
-        super().__init__(
-            (randint(0, GRID_WIDTH - 1) * GRID_SIZE,
-             randint(0, GRID_HEIGHT - 1) * GRID_SIZE)
->>>>>>> bcb4df2b815d49016022d52b20111c5aa07868db
         )
         self.body_color = APPLE_COLOR
 
@@ -94,15 +78,8 @@ class Snake(GameObject):
         """Переместить змею в текущем направлении"""
         head_x, head_y = self.get_head_position()
         dx, dy = self.direction
-<<<<<<< HEAD
         new_head = ((head_x + (dx * GRID_SIZE)) % SCREEN_WIDTH,
             (head_y + (dy * GRID_SIZE)) % SCREEN_HEIGHT,)
-=======
-        new_head = (
-            (head_x + (dx * GRID_SIZE)) % SCREEN_WIDTH,
-            (head_y + (dy * GRID_SIZE)) % SCREEN_HEIGHT,
-        )
->>>>>>> bcb4df2b815d49016022d52b20111c5aa07868db
         self.positions.insert(0, new_head)
         if len(self.positions) > self.length:
             self.last = self.positions.pop()
@@ -110,12 +87,8 @@ class Snake(GameObject):
             self.last = None
 
     def reset(self):
-<<<<<<< HEAD
          """Сброс позиции и направления змеи при столкновении с самой
     собой. Сбросить состояние змеи до начального"""
-=======
-        """Сбросить состояние змеи до начального"""
->>>>>>> bcb4df2b815d49016022d52b20111c5aa07868db
         center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
         self.length = 1
         self.positions = [center]
@@ -128,18 +101,10 @@ class Snake(GameObject):
             rect = pygame.Rect(position, (GRID_SIZE, GRID_SIZE))
             pygame.draw.rect(screen, self.body_color, rect)
             pygame.draw.rect(screen, BORDER_COLOR, rect, 1)
-<<<<<<< HEAD
-
-=======
->>>>>>> bcb4df2b815d49016022d52b20111c5aa07868db
         # Рисование головы змеи с дополнительной рамкой
         head_rect = pygame.Rect(self.positions[0], (GRID_SIZE, GRID_SIZE))
         pygame.draw.rect(screen, self.body_color, head_rect)
         pygame.draw.rect(screen, BORDER_COLOR, head_rect, 1)
-<<<<<<< HEAD
-
-=======
->>>>>>> bcb4df2b815d49016022d52b20111c5aa07868db
         # Удаление хвоста змеи на экране, если он был перемещен
         if self.last:
             last_rect = pygame.Rect(self.last, (GRID_SIZE, GRID_SIZE))
