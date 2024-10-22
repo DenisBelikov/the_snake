@@ -36,11 +36,12 @@ class GameObject:
     def draw(self, screen):
         """Рисование объекта на экране"""
         raise NotImplementedError(
-        "Этот метод должен быть переопределён в подклассах"
-        )
+        "Этот метод должен быть переопределён в подклассах")
+
 
 class Apple(GameObject):
     """Класс для яблока"""
+
     def __init__(self):
         """Инициализация, установка случайной позиции для яблока"""
         super().__init__((randint(0, GRID_WIDTH - 1) * GRID_SIZE,
@@ -67,9 +68,11 @@ class Snake(GameObject):
         self.last = None
         self.body_color = SNAKE_COLOR
 
+
     def get_head_position(self):
         """Получить позицию головы змеи"""
         return self.positions[0]
+
 
     def move(self):
         """Переместить змею в текущем направлении"""
@@ -83,6 +86,7 @@ class Snake(GameObject):
         else:
             self.last = None
 
+
     def reset(self):
         """Сброс позиции и направления змеи при столкновении с самой
         собой. Сбросить состояние змеи до начального"""
@@ -91,6 +95,7 @@ class Snake(GameObject):
         self.positions = [center]
         self.direction = choice([UP, DOWN, LEFT, RIGHT])
         self.last = None
+
 
     def draw(self, screen):
         """Рисование змеи на экране"""
