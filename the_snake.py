@@ -37,7 +37,7 @@ class GameObject:
         """Рисование объекта на экране"""
         raise NotImplementedError(
             "Этот метод должен быть переопределён в подклассах"
-        )
+            )
 
 class Apple(GameObject):
     """Класс для яблока"""
