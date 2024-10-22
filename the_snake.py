@@ -22,11 +22,15 @@ BORDER_COLOR = (93, 216, 228)  # Цвет рамки
 APPLE_COLOR = (255, 0, 0)  # Цвет яблока
 SNAKE_COLOR = (0, 255, 0)  # Цвет змейки
 
-# Скорость змейки
+# Скорость игры
 SPEED = 20
 
 
+<<<<<<< HEAD
 class Game_Object:
+=======
+class GameObject:
+>>>>>>> bcb4df2b815d49016022d52b20111c5aa07868db
     """Базовый класс для игровых объектов"""
 
     def __init__(self, position):
@@ -35,17 +39,29 @@ class Game_Object:
 
     def draw(self, screen):
         """Рисование объекта на экране"""
+<<<<<<< HEAD
         raise NotImplementedError("Этот метод должен быть переопределён в
                                    подклассах")
+=======
+        raise NotImplementedError(
+            "Этот метод должен быть переопределён в подклассах"
+        )
+>>>>>>> bcb4df2b815d49016022d52b20111c5aa07868db
 
 
-class Apple(Game_Object):
+class Apple(GameObject):
     """Класс для яблока"""
 
     def __init__(self):
         """Инициализация, установка случайной позиции для яблока"""
+<<<<<<< HEAD
         super().__init__((randint(0, GRID_WIDTH - 1) * GRID_SIZE,
                           randint(0, GRID_HEIGHT - 1) * GRID_SIZE)
+=======
+        super().__init__(
+            (randint(0, GRID_WIDTH - 1) * GRID_SIZE,
+             randint(0, GRID_HEIGHT - 1) * GRID_SIZE)
+>>>>>>> bcb4df2b815d49016022d52b20111c5aa07868db
         )
         self.body_color = APPLE_COLOR
 
@@ -57,7 +73,7 @@ class Apple(Game_Object):
         pygame.draw.rect(screen, BORDER_COLOR, rect, 1)
 
 
-class Snake(Game_Object):
+class Snake(GameObject):
     """Класс для змеи"""
 
     def __init__(self):
@@ -75,11 +91,18 @@ class Snake(Game_Object):
         return self.positions[0]
 
     def move(self):
-        """Изменение позиции змеи на экране в зависимости от направления"""
+        """Переместить змею в текущем направлении"""
         head_x, head_y = self.get_head_position()
         dx, dy = self.direction
+<<<<<<< HEAD
         new_head = ((head_x + (dx * GRID_SIZE)) % SCREEN_WIDTH,
             (head_y + (dy * GRID_SIZE)) % SCREEN_HEIGHT,)
+=======
+        new_head = (
+            (head_x + (dx * GRID_SIZE)) % SCREEN_WIDTH,
+            (head_y + (dy * GRID_SIZE)) % SCREEN_HEIGHT,
+        )
+>>>>>>> bcb4df2b815d49016022d52b20111c5aa07868db
         self.positions.insert(0, new_head)
         if len(self.positions) > self.length:
             self.last = self.positions.pop()
@@ -87,8 +110,12 @@ class Snake(Game_Object):
             self.last = None
 
     def reset(self):
+<<<<<<< HEAD
          """Сброс позиции и направления змеи при столкновении с самой
     собой. Сбросить состояние змеи до начального"""
+=======
+        """Сбросить состояние змеи до начального"""
+>>>>>>> bcb4df2b815d49016022d52b20111c5aa07868db
         center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
         self.length = 1
         self.positions = [center]
@@ -101,12 +128,18 @@ class Snake(Game_Object):
             rect = pygame.Rect(position, (GRID_SIZE, GRID_SIZE))
             pygame.draw.rect(screen, self.body_color, rect)
             pygame.draw.rect(screen, BORDER_COLOR, rect, 1)
+<<<<<<< HEAD
 
+=======
+>>>>>>> bcb4df2b815d49016022d52b20111c5aa07868db
         # Рисование головы змеи с дополнительной рамкой
         head_rect = pygame.Rect(self.positions[0], (GRID_SIZE, GRID_SIZE))
         pygame.draw.rect(screen, self.body_color, head_rect)
         pygame.draw.rect(screen, BORDER_COLOR, head_rect, 1)
+<<<<<<< HEAD
 
+=======
+>>>>>>> bcb4df2b815d49016022d52b20111c5aa07868db
         # Удаление хвоста змеи на экране, если он был перемещен
         if self.last:
             last_rect = pygame.Rect(self.last, (GRID_SIZE, GRID_SIZE))
@@ -114,18 +147,16 @@ class Snake(Game_Object):
 
 
 def main():
-    """Основная функция игры"""
+    """Главная функция игры"""
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), 0, 32)
     pygame.display.set_caption('Змейка')
     clock = pygame.time.Clock()
-
     snake = Snake()
     apple = Apple()
 
     while True:
         screen.fill(BOARD_BACKGROUND_COLOR)
-
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -152,7 +183,6 @@ def main():
 
         snake.draw(screen)
         apple.draw(screen)
-
         pygame.display.update()
         clock.tick(SPEED)
 
