@@ -29,6 +29,7 @@ SPEED = 20
 class GameObject:
     """Базовый класс для игровых объектов"""
 
+
     def __init__(self, position):
         """Инициализация позиции объекта"""
         self.position = position
@@ -87,7 +88,7 @@ class Snake(GameObject):
     def reset(self):
         """Сброс позиции и направления змеи при столкновении с самой
         собой. Сбросить состояние змеи до начального
-                                                    """
+        """
         center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
         self.length = 1
         self.positions = [center]
