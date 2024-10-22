@@ -26,7 +26,7 @@ SNAKE_COLOR = (0, 255, 0)  # Цвет змейки
 SPEED = 20
 
 
-class GameObject:
+class Game_Object:
     """Базовый класс для игровых объектов"""
 
     def __init__(self, position):
@@ -36,17 +36,17 @@ class GameObject:
     def draw(self, screen):
         """Рисование объекта на экране"""
         raise NotImplementedError("Этот метод должен быть переопределён в
-                                   подклассах")
+                                   подклассах"
+        )
 
 
-class Apple(GameObject):
+class Apple(Game_Object):
     """Класс для яблока"""
 
     def __init__(self):
         """Инициализация, установка случайной позиции для яблока"""
         super().__init__((randint(0, GRID_WIDTH - 1) * GRID_SIZE,
-                          randint(0, GRID_HEIGHT - 1) * GRID_SIZE)
-        )
+                          randint(0, GRID_HEIGHT - 1) * GRID_SIZE))
         self.body_color = APPLE_COLOR
 
 
@@ -57,7 +57,7 @@ class Apple(GameObject):
         pygame.draw.rect(screen, BORDER_COLOR, rect, 1)
 
 
-class Snake(GameObject):
+class Snake(Game_Object):
     """Класс для змеи"""
 
     def __init__(self):
