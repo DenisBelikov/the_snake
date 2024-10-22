@@ -68,11 +68,9 @@ class Snake(GameObject):
         self.last = None
         self.body_color = SNAKE_COLOR
 
-
     def get_head_position(self):
         """Получить позицию головы змеи"""
         return self.positions[0]
-
 
     def move(self):
         """Переместить змею в текущем направлении"""
@@ -86,16 +84,15 @@ class Snake(GameObject):
         else:
             self.last = None
 
-
     def reset(self):
         """Сброс позиции и направления змеи при столкновении с самой
-        собой. Сбросить состояние змеи до начального"""
+        собой. Сбросить состояние змеи до начального
+        """
         center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
         self.length = 1
         self.positions = [center]
         self.direction = choice([UP, DOWN, LEFT, RIGHT])
         self.last = None
-
 
     def draw(self, screen):
         """Рисование змеи на экране"""
@@ -111,7 +108,6 @@ class Snake(GameObject):
         if self.last:
             last_rect = pygame.Rect(self.last, (GRID_SIZE, GRID_SIZE))
             pygame.draw.rect(screen, BOARD_BACKGROUND_COLOR, last_rect)
-
 
 def main():
     """Главная функция игры"""
