@@ -22,7 +22,7 @@ BORDER_COLOR = (93, 216, 228)  # Цвет рамки
 APPLE_COLOR = (255, 0, 0)  # Цвет яблока
 SNAKE_COLOR = (0, 255, 0)  # Цвет змейки
 
-# Скорость игры
+# Скорость змейки
 SPEED = 20
 
 
@@ -35,8 +35,8 @@ class GameObject:
 
     def draw(self, screen):
         """Рисование объекта на экране"""
-        raise NotImplementedError("Этот метод должен быть переопределён 
-                                  в подклассах")
+        raise NotImplementedError("Этот метод должен \
+                                  быть переопределён в подклассах")
 
 
 class Apple(GameObject):
