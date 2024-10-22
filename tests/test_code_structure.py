@@ -30,8 +30,8 @@ EXPECTED_APPLE_ATTRS = (
 
 
 def test_apple_inherits_from_game_object(_the_snake):
-    assert issubclass(_the_snake.Apple, _the_snake.Game_Object), (
-        'Класс `Apple` должен наследоваться от класса `GameOb_ject`.'
+    assert issubclass(_the_snake.Apple, _the_snake.GameObject), (
+        'Класс `Apple` должен наследоваться от класса `GameObject`.'
     )
 
 
