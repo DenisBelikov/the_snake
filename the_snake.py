@@ -39,16 +39,13 @@ class GameObject:
                                     подклассах"
         )
 
-
 class Apple(GameObject):
     """Класс для яблока"""
-
     def __init__(self):
         """Инициализация, установка случайной позиции для яблока"""
         super().__init__((randint(0, GRID_WIDTH - 1) * GRID_SIZE,
                           randint(0, GRID_HEIGHT - 1) * GRID_SIZE))
         self.body_color = APPLE_COLOR
-
 
     def draw(self, screen):
         """Рисование яблока на экране"""
