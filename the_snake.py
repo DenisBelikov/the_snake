@@ -35,7 +35,7 @@ class Game_Object:
 
     def draw(self, screen):
         """Рисование объекта на экране"""
-        raise NotImplementedError("этот метод должен быть переопределён в
+        raise NotImplementedError("Этот метод должен быть переопределён в
                                     подклассах"
         )
 
