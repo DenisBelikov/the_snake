@@ -26,7 +26,7 @@ SNAKE_COLOR = (0, 255, 0)  # Цвет змейки
 SPEED = 20
 
 
-class Gameobject:
+class GameObject:
     """Базовый класс для игровых объектов"""
 
     def __init__(self, position):
@@ -40,7 +40,7 @@ class Gameobject:
         )
 
 
-class Apple(Gameobject):
+class Apple(GameObject):
     """Класс для яблока"""
 
     def __init__(self):
@@ -57,7 +57,7 @@ class Apple(Gameobject):
         pygame.draw.rect(screen, BORDER_COLOR, rect, 1)
 
 
-class Snake(Gameobject):
+class Snake(GameObject):
     """Класс для змеи"""
 
     def __init__(self):
