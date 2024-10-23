@@ -34,8 +34,8 @@ class GameObject:
 
     def draw(self, surface):
         """Рисование объекта на экране."""
-        pass NotImplementedError ("Этот метод должен быть переопределён 
-                                    в подклассах.")
+        pass NotImplementedError ("Этот метод должен быть переопределён \
+        в подклассах.")
 
 
 class Apple(GameObject):
@@ -44,7 +44,7 @@ class Apple(GameObject):
     def __init__(self):
         """Инициализация, установка случайной позиции для яблока."""
         super().__init__((0, 0))
-        self.bodycolor = APPLE_COLOR
+        self.body_color = APPLE_COLOR
         self.randomize_position()
 
     def randomize_position(self):
@@ -56,7 +56,7 @@ class Apple(GameObject):
     def draw(self, surface):
         """Рисование яблока на экране."""
         r = pygame.Rect(self.position, (GRID_SIZE, GRID_SIZE))
-        pygame.draw.rect(surface, self.bodycolor, r)
+        pygame.draw.rect(surface, self.body_color, r)
 
 
 class Snake(GameObject):
@@ -66,8 +66,8 @@ class Snake(GameObject):
         self.length = 1
         self.positions = [(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)]
         self.direction = RIGHT
-        self.nextdirection = None
-        self.bodycolor = SNAKE_COLOR
+        self.next_direction = None
+        self.body_color = SNAKE_COLOR
 
     def get_head_position(self):
         """Получить позицию головы змеи."""
