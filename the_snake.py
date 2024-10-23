@@ -163,10 +163,10 @@ def main():
     apple = Apple()
 
     while True:
+        clock. tick(SPEED)
         screen.fill(BOARD_BACKGROUND_COLOR)
         handle_keys(snake)
         snake.move()
-        clock. tick(SPEED)
 
         if snake.get_head_position() == apple.position:
             snake.length += 1
