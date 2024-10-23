@@ -93,13 +93,13 @@ class Snake(GameObject):
             self.last = None
 
     def reset(self):
-        """Эта функция выполняет сброс позиции и направления змеи, 
+        """Эта функция выполняет сброс позиции и направления змеи,
         устанавливая её в начальное состояние,
         каждый раз, когда змея сталкивается с самой собой."""
         center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
         self.length = 1
         self.positions = [center]
-        self.direction = choice([UP, DOWN, LEFT, RIGHT]) 
+        self.direction = choice([UP, DOWN, LEFT, RIGHT])
         """Кнопки управления."""
         self.last = None
 
@@ -121,6 +121,7 @@ class Snake(GameObject):
             pygame.draw.rect(screen, BOARD_BACKGROUND_COLOR, last_rect)
 
     def update_direction(self, new_direction):
+        """Обновляет направление движения"""
         if new_direction != tuple(-x for x in self.direction):
             self.direction = new_direction
 
