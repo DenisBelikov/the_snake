@@ -161,6 +161,10 @@ def main():
         clock.tick(SPEED)
 
 
+if __name__ == "__main__":
+    main()
+
+
 def handle_keys(snake):
     """Обрабатывает нажатия клавиш для управления змеей."""
     for event in pygame.event.get():
@@ -180,7 +184,3 @@ def handle_keys(snake):
 
             elif event.key == pygame.K_RIGHT:
                 snake.update_direction(RIGHT)
-
-
-if __name__ == '__main__':
-    main()
