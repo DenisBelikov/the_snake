@@ -26,6 +26,9 @@ SNAKE_COLOR = (0, 255, 0)   # Цвет змейки
 # Скорость игры
 SPEED = 20
 
+screen = None  # Определяем на уровне модуля
+clock = None  # Определяем на уровне модуля
+
 
 class GameObject:
     """Базовый класс для игровых объектов."""
@@ -130,10 +133,12 @@ class Snake(GameObject):
 
 def main():
     """Главная функция игры."""
+    global screen, clock  # Используем глобальные переменные
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), 0, 32)
     pygame.display.set_caption('Змейка')
     clock = pygame.time.Clock()
+
     snake = Snake()
     apple = Apple()
 
@@ -148,8 +153,10 @@ def main():
 
         if snake.get_head_position() in snake.positions[1:]:
             snake.reset()
+
         snake.draw(screen)
         apple.draw(screen)
+
         pygame.display.update()
         clock.tick(SPEED)
 
