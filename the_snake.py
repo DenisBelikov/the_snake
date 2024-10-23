@@ -154,15 +154,16 @@ def handle_keys(snake):
 
 def main():
     """Главная функция игры."""
+
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), 0, 32)
     pygame.display.set_caption('Змейка')
+    clock = pygame.time.Clock()
 
     snake = Snake()
     apple = Apple()
 
     while True:
-        clock.tick(SPEED)
         screen.fill(BOARD_BACKGROUND_COLOR)
         handle_keys(snake)
         snake.move()
@@ -173,11 +174,11 @@ def main():
 
         if snake.get_head_position() in snake.positions[1:]:
             snake.reset()
-
         snake.draw(screen)
         apple.draw(screen)
-
         pygame.display.update()
+        clock.tick(SPEED)
+
 
 
 if __name__ == "__main__":
