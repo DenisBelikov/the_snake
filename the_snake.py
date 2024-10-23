@@ -164,7 +164,6 @@ def handle_keys(snake):
 
 def main():
     """Главная функция игры."""
-
     snake = Snake()
     apple = Apple()
 
