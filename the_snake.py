@@ -166,6 +166,7 @@ def main():
         screen.fill(BOARD_BACKGROUND_COLOR)
         handle_keys(snake)
         snake.move()
+        clock. tick(SPEED)
 
         if snake.get_head_position() == apple.position:
             snake.length += 1
@@ -178,7 +179,6 @@ def main():
         apple.draw(screen)
 
         pygame.display.update()
-        clock. tick(SPEED)
 
 
 if __name__ == "__main__":
