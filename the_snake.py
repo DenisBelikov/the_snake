@@ -33,6 +33,7 @@ class GameObject:
     def __init__(self, position):
         """Инициализация позиции объекта."""
         self.position = position
+
     def draw(self, screen):
         """Рисование объекта на экране."""
         raise NotImplementedError("Этот метод должен \
