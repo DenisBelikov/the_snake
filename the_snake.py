@@ -56,6 +56,7 @@ class Apple(GameObject):
         pygame.draw.rect(screen, BORDER_COLOR, rect, 1)
 
     def randomize_position(self):
+        """Рандомизирует положение объекта на сетке."""
         self.position = (randint(0, GRID_WIDTH - 1) * GRID_SIZE,
                          randint(0, GRID_HEIGHT - 1) * GRID_SIZE)
 
