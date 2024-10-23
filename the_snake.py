@@ -26,21 +26,31 @@ SNAKE_COLOR = (0, 255, 0)   # Цвет змейки
 # Скорость игры
 SPEED = 20
 
-screen = None  # Определяем на уровне модуля
-clock = None  # Определяем на уровне модуля
+screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), 0, 32)
+
+# Заголовок окна игрового поля:
+pygame.display.set_caption('Змейка')
+
+# Настройка времени:
+clock = pygame.time.Clock()
+
+INITIONAL_POSITION = (0, 0)
 
 
 class GameObject:
     """Базовый класс для игровых объектов."""
 
-    def __init__(self, position):
-        """Инициализация позиции объекта."""
+    def __init__(self, position=INITIONAL_POSITION, body_color=(0, 0, 0)):
+        """Инициализация игрового объекта с заданными позицией и цветом."""
         self.position = position
+        self.body_color = body_color
 
-    def draw(self, screen):
-        """Рисование объекта на экране."""
-        raise NotImplementedError("Этот метод должен быть \
-                            переопределён в подклассах.")
+    def draw(self, surface):
+        """
+        Метод для отрисовки объекта.
+        Предназначен для переопределения в дочерних классах.
+        """
+        pass
 
 
 class Apple(GameObject):
@@ -154,10 +164,6 @@ def handle_keys(snake):
 
 def main():
     """Главная функция игры."""
-    pygame.init()
-    screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), 0, 32)
-    pygame.display.set_caption('Змейка')
-    clock = pygame.time.Clock()
 
     snake = Snake()
     apple = Apple()
@@ -177,6 +183,7 @@ def main():
         snake.draw(screen)
         apple.draw(screen)
         pygame.display.update()
+        clock.tick(SPEED)
 
 
 if __name__ == "__main__":
