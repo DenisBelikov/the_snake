@@ -115,22 +115,22 @@ def main():
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), 0, 32)
     pygame.display.set_caption('Змейка')
     clock = pygame.time.Clock()
-    snake = snake()
-    apple = apple()
+    snake = Snake()
+    apple = Apple()
 
     while True:
         screen.fill(BOARD_BACKGROUND_COLOR)
-        handle_input(snake)
-        snake.move()
+        handle_input(Snake)
+        Snake.move()
 
-        if snake.get_head_position() == apple.position:
-            snake.length += 1
-            apple = Apple()
+        if Snake.get_head_position() == apple.position:
+            Snake.length += 1
+            Apple = Apple()
 
-        if snake.get_head_position() in snake.positions[1:]:
-            snake.reset()
-        snake.draw(screen)
-        apple.draw(screen)
+        if Snake.get_head_position() in snake.positions[1:]:
+            Snake.reset()
+        Snake.draw(screen)
+        Apple.draw(screen)
         pygame.display.update()
         clock.tick(SPEED)
 
