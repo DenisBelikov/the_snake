@@ -131,6 +131,27 @@ class Snake(GameObject):
             self.direction = new_direction
 
 
+def handle_keys(snake):
+    """Обрабатывает нажатия клавиш для управления змеей."""
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
+
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_UP:
+                snake.update_direction(UP)
+
+            elif event.key == pygame.K_DOWN:
+                snake.update_direction(DOWN)
+
+            elif event.key == pygame.K_LEFT:
+                snake.update_direction(LEFT)
+
+            elif event.key == pygame.K_RIGHT:
+                snake.update_direction(RIGHT)
+
+
 def main():
     """Главная функция игры."""
     global screen, clock  # Используем глобальные переменные
@@ -158,29 +179,8 @@ def main():
         apple.draw(screen)
 
         pygame.display.update()
-        clock.tick(SPEED)
+        clock. tick(SPEED)
 
 
 if __name__ == "__main__":
     main()
-
-
-def handle_keys(snake):
-    """Обрабатывает нажатия клавиш для управления змеей."""
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            sys.exit()
-
-        elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_UP:
-                snake.update_direction(UP)
-
-            elif event.key == pygame.K_DOWN:
-                snake.update_direction(DOWN)
-
-            elif event.key == pygame.K_LEFT:
-                snake.update_direction(LEFT)
-
-            elif event.key == pygame.K_RIGHT:
-                snake.update_direction(RIGHT)
