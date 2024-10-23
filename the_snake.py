@@ -1,3 +1,4 @@
+"""Добавляем импорты."""
 from random import choice, randint
 import pygame
 import sys
@@ -101,7 +102,6 @@ class Snake(GameObject):
 
     def draw(self, screen):
         """Рисование яблока на экране."""
-
         for position in self.positions[:-1]:
             rect = pygame.Rect(position, (GRID_SIZE, GRID_SIZE))
             pygame.draw.rect(screen, self.body_color, rect)
@@ -121,7 +121,6 @@ class Snake(GameObject):
 
 def main():
     """Главная функция игры."""
-
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), 0, 32)
     pygame.display.set_caption('Змейка')
@@ -148,7 +147,6 @@ def main():
 
 def handle_keys(snake):
     """Обрабатывает нажатия клавиш для управления змеей."""
-
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
