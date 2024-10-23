@@ -99,12 +99,14 @@ class Snake(GameObject):
         center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
         self.length = 1
         self.positions = [center]
-        self.direction = choice([UP, DOWN, LEFT, RIGHT])
+        self.direction = choice([UP, DOWN, LEFT, RIGHT]) 
+        """Кнопки управления."""
         self.last = None
 
     def draw(self, screen):
         """Рисование яблока на экране."""
         for position in self.positions[:-1]:
+            # Определяем область прямоугольника для текущего сегмента змеи.
             rect = pygame.Rect(position, (GRID_SIZE, GRID_SIZE))
             pygame.draw.rect(screen, self.body_color, rect)
             pygame.draw.rect(screen, BORDER_COLOR, rect, 1)
@@ -112,6 +114,8 @@ class Snake(GameObject):
         headrect = pygame.Rect(self.positions[0], (GRID_SIZE, GRID_SIZE))
         pygame.draw.rect(screen, self.body_color, headrect)
         pygame.draw.rect(screen, BORDER_COLOR, headrect, 1)
+        """Если у змеи есть последнее оставленное положение,
+        очищаем его, закрашивая фоновым цветом."""
         if self.last:
             last_rect = pygame.Rect(self.last, (GRID_SIZE, GRID_SIZE))
             pygame.draw.rect(screen, BOARD_BACKGROUND_COLOR, last_rect)
