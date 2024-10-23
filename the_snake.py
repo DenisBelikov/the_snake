@@ -65,9 +65,7 @@ class Snake(GameObject):
     """Класс для змеи."""
 
     def __init__(self):
-        """
-        Инициализация змейки в центре экрана.
-        """
+        """Инициализация змейки в центре экрана."""
         center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
         super().__init__(center)
         self.positions = [center]
@@ -97,8 +95,7 @@ class Snake(GameObject):
     def reset(self):
         """Эта функция выполняет сброс позиции и направления змеи, 
         устанавливая её в начальное состояние,
-        каждый раз, когда змея сталкивается с самой собой.
-        """
+        каждый раз, когда змея сталкивается с самой собой."""
         center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
         self.length = 1
         self.positions = [center]
