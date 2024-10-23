@@ -154,7 +154,6 @@ def handle_keys(snake):
 
 def main():
     """Главная функция игры."""
-
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), 0, 32)
     pygame.display.set_caption('Змейка')
@@ -178,7 +177,6 @@ def main():
         apple.draw(screen)
         pygame.display.update()
         clock.tick(SPEED)
-
 
 
 if __name__ == "__main__":
