@@ -2,28 +2,23 @@ from random import choice, randint
 import pygame
 import sys
 
-
 # Размеры экрана
 SCREEN_WIDTH, SCREEN_HEIGHT = 640, 480
 GRID_SIZE = 20
-
-# Количество клеток по горизонтали и вертикали
 GRID_WIDTH = SCREEN_WIDTH // GRID_SIZE
 GRID_HEIGHT = SCREEN_HEIGHT // GRID_SIZE
 
-# Направления движения
 UP = (0, -1)
 DOWN = (0, 1)
 LEFT = (-1, 0)
 RIGHT = (1, 0)
 
 # Цвета
-BOARD_BACKGROUND_COLOR = (0, 0, 0)  # Цвет фона
-BORDER_COLOR = (93, 216, 228)  # Цвет рамки
-APPLE_COLOR = (255, 0, 0)  # Цвет яблока
-SNAKE_COLOR = (0, 255, 0)  # Цвет змейки
+BOARD_BACKGROUND_COLOR = (0, 0, 0)
+BORDER_COLOR = (93, 216, 228)
+APPLE_COLOR = (255, 0, 0)
+SNAKE_COLOR = (0, 255, 0)
 
-# Скорость змейки
 SPEED = 20
 
 
@@ -36,8 +31,8 @@ class GameObject:
 
     def draw(self, screen):
         """Рисование объекта на экране."""
-        raise NotImplementedError("Этот метод должен \
-        быть переопределён в подклассах.")
+        raise NotImplementedError("Этот метод должен быть переопределён \
+         в подклассах.")
 
 
 class Apple(GameObject):
@@ -100,14 +95,9 @@ class Snake(GameObject):
             rect = pygame.Rect(position, (GRID_SIZE, GRID_SIZE))
             pygame.draw.rect(screen, self.body_color, rect)
             pygame.draw.rect(screen, BORDER_COLOR, rect, 1)
-        # Рисование головы змеи с дополнительной рамкой
         head_rect = pygame.Rect(self.positions[0], (GRID_SIZE, GRID_SIZE))
         pygame.draw.rect(screen, self.body_color, head_rect)
         pygame.draw.rect(screen, BORDER_COLOR, head_rect, 1)
-        # Удаление хвоста змеи на экране, если он был перемещен
-        if self.last:
-            last_rect = pygame.Rect(self.last, (GRID_SIZE, GRID_SIZE))
-            pygame.draw.rect(screen, BOARD_BACKGROUND_COLOR, last_rect)
 
 
 def main():
@@ -122,21 +112,18 @@ def main():
     while True:
         screen.fill(BOARD_BACKGROUND_COLOR)
         handle_input(snake)
-
         snake.move()
-        # Проверка, съедено ли яблоко
+
         if snake.get_head_position() == apple.position:
             snake.length += 1
             apple = Apple()
-        # Проверка на столкновение с собственной длиной
+
         if snake.get_head_position() in snake.positions[1:]:
             snake.reset()
-
         snake.draw(screen)
         apple.draw(screen)
         pygame.display.update()
         clock.tick(SPEED)
-
 
 def handle_input(snake):
     """Обрабатывает нажатия клавиш для управления змеей."""
@@ -144,16 +131,19 @@ def handle_input(snake):
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
+
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP and snake.direction != DOWN:
                 snake.direction = UP
+
             elif event.key == pygame.K_DOWN and snake.direction != UP:
                 snake.direction = DOWN
+
             elif event.key == pygame.K_LEFT and snake.direction != RIGHT:
                 snake.direction = LEFT
+
             elif event.key == pygame.K_RIGHT and snake.direction != LEFT:
                 snake.direction = RIGHT
-
 
 if __name__ == '__main__':
     main()
