@@ -5,20 +5,24 @@ import sys
 # Размеры экрана
 SCREEN_WIDTH, SCREEN_HEIGHT = 640, 480
 GRID_SIZE = 20
+
+# Количество клеток по горизонтали и вертикали
 GRID_WIDTH = SCREEN_WIDTH // GRID_SIZE
 GRID_HEIGHT = SCREEN_HEIGHT // GRID_SIZE
 
+# Направления движения
 UP = (0, -1)
 DOWN = (0, 1)
 LEFT = (-1, 0)
 RIGHT = (1, 0)
 
 # Цвета
-BOARD_BACKGROUND_COLOR = (0, 0, 0)
-BORDER_COLOR = (93, 216, 228)
-APPLE_COLOR = (255, 0, 0)
-SNAKE_COLOR = (0, 255, 0)
+BOARD_BACKGROUND_COLOR = (0, 0, 0)  # Цвет фона
+BORDER_COLOR = (93, 216, 228)  # Цвет рамки
+APPLE_COLOR = (255, 0, 0)  # Цвет яблока
+SNAKE_COLOR = (0, 255, 0)   # Цвет змейки
 
+# Скорость игры
 SPEED = 20
 
 
@@ -95,6 +99,7 @@ class Snake(GameObject):
             rect = pygame.Rect(position, (GRID_SIZE, GRID_SIZE))
             pygame.draw.rect(screen, self.body_color, rect)
             pygame.draw.rect(screen, BORDER_COLOR, rect, 1)
+        # Рисование головы змеи с дополнительной рамкой
         head_rect = pygame.Rect(self.positions[0], (GRID_SIZE, GRID_SIZE))
         pygame.draw.rect(screen, self.body_color, head_rect)
         pygame.draw.rect(screen, BORDER_COLOR, head_rect, 1)
@@ -102,6 +107,7 @@ class Snake(GameObject):
 
 def main():
     """Главная функция игры."""
+
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), 0, 32)
     pygame.display.set_caption('Змейка')
@@ -125,6 +131,7 @@ def main():
         pygame.display.update()
         clock.tick(SPEED)
 
+
 def handle_input(snake):
     """Обрабатывает нажатия клавиш для управления змеей."""
     for event in pygame.event.get():
@@ -144,6 +151,7 @@ def handle_input(snake):
 
             elif event.key == pygame.K_RIGHT and snake.direction != LEFT:
                 snake.direction = RIGHT
+
 
 if __name__ == '__main__':
     main()
