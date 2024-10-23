@@ -1,4 +1,4 @@
-from random import choice
+from random import choice, randint
 import pygame
 import sys
 
@@ -44,8 +44,8 @@ class Apple(GameObject):
 
     def __init__(self):
         """Инициализация, установка случайной позиции для яблока."""
-        super().__init__((randomize_position(0, GRID_WIDTH - 1) * GRID_SIZE,
-                          randomize_position(0, GRID_HEIGHT - 1) * GRID_SIZE))
+        super().__init__((randint(0, GRID_WIDTH - 1) * GRID_SIZE,
+                          randint(0, GRID_HEIGHT - 1) * GRID_SIZE))
         self.body_color = APPLE_COLOR
 
     def draw(self, screen):
