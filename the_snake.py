@@ -120,17 +120,17 @@ def main():
 
     while True:
         screen.fill(BOARD_BACKGROUND_COLOR)
-        handle_input(Snake)
-        Snake.move()
+        handle_input(snake)
+        snake.move()
 
-        if Snake.get_head_position() == apple.position:
-            Snake.length += 1
-            Apple = Apple()
+        if snake.get_head_position() == apple.position:
+            snake.length += 1
+            apple = Apple()
 
-        if Snake.get_head_position() in snake.positions[1:]:
-            Snake.reset()
-        Snake.draw(screen)
-        Apple.draw(screen)
+        if snake.get_head_position() in snake.positions[1:]:
+            snake.reset()
+        snake.draw(screen)
+        apple.draw(screen)
         pygame.display.update()
         clock.tick(SPEED)
 
