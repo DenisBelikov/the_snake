@@ -160,6 +160,7 @@ def main():
     apple = Apple()
 
     while True:
+        clock.tick(SPEED)
         screen.fill(BOARD_BACKGROUND_COLOR)
         handle_keys(snake)
         snake.move()
@@ -173,7 +174,6 @@ def main():
         snake.draw(screen)
         apple.draw(screen)
         pygame.display.update()
-        clock.tick(SPEED)
 
 
 if __name__ == "__main__":
