@@ -28,6 +28,7 @@ SPEED = 20
 
 
 class GameObject:
+
     """Базовый класс для игровых объектов."""
 
 
@@ -41,6 +42,7 @@ class GameObject:
         быть переопределён в подклассах.")
 
 class Apple(GameObject):
+
     """Класс для яблока."""
 
     def __init__(self):
@@ -57,6 +59,7 @@ class Apple(GameObject):
 
 
 class Snake(GameObject):
+
     """Класс для змеи."""
 
     def __init__(self):
