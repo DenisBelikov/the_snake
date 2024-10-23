@@ -102,8 +102,8 @@ class Snake(GameObject):
         self.length = 1
         self.positions = [center]
         self.direction = choice([UP, DOWN, LEFT, RIGHT])
-        """Кнопки управления."""
         self.last = None
+        """Кнопки управления."""
 
     def draw(self, screen):
         """Рисование яблока на экране."""
