@@ -30,7 +30,6 @@ SPEED = 20
 class GameObject:
     """Базовый класс для игровых объектов."""
 
-
     def __init__(self, position):
         """Инициализация позиции объекта."""
         self.position = position
@@ -42,6 +41,7 @@ class GameObject:
 
 class Apple(GameObject):
     """Класс для яблока."""
+
     def __init__(self):
         """Инициализация, установка случайной позиции для яблока."""
         super().__init__((randint(0, GRID_WIDTH - 1) * GRID_SIZE,
@@ -56,8 +56,8 @@ class Apple(GameObject):
 
 
 class Snake(GameObject):
-
     """Класс для змеи."""
+
     def __init__(self):
         """Инициализация змейки в центре экрана."""
         center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
