@@ -121,10 +121,7 @@ def main():
 
     while True:
         screen.fill(BOARD_BACKGROUND_COLOR)
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
+        handle_input(snake)
 
         snake.move()
         # Проверка, съедено ли яблоко
