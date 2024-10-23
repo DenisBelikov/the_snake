@@ -162,7 +162,7 @@ def main():
     apple = Apple()
 
     while True:
-        clock. tick(SPEED)
+        clock.tick(SPEED)
         screen.fill(BOARD_BACKGROUND_COLOR)
         handle_keys(snake)
         snake.move()
