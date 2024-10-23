@@ -64,7 +64,7 @@ class Apple(GameObject):
 class Snake(GameObject):
     """Класс для змеи."""
 
-    def __init__(self):
+    def __init__(self, position):
         """Инициализация змейки в центре экрана."""
         center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
         super().__init__(center)
