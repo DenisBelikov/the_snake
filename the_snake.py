@@ -78,7 +78,7 @@ class GameObject:
 class Apple(GameObject):
     """Класс для представления яблока на игровом поле"""
 
-    def __init__(self, occupied_cells):
+    def __init__(self, occupied_cells=0):
         """
         Инициализация яблока и его случайное размещение.
         :param occupied_cells: Список занятых клеток,
