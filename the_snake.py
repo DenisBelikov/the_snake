@@ -1,6 +1,4 @@
-"""
-Добавляем импорты.
-"""
+"""Добавляем импорты."""
 from random import choice, randint
 
 import sys
@@ -51,9 +49,7 @@ INITIONAL_POSITION = (0, 0)
 
 
 class GameObject:
-    """
-    Базовый класс для объектов игры.
-    """
+    """Базовый класс для объектов игры."""
 
     def __init__(self, position=INITIONAL_POSITION,
                  body_color=BOARD_BACKGROUND_COLOR):
@@ -111,14 +107,10 @@ class Apple(GameObject):
 
 
 class Snake(GameObject):
-    """
-    Класс, представляющий змею в игре.
-    """
+    """Класс, представляющий змею в игре."""
 
     def __init__(self):
-        """
-        Инициализация змеи в центре экрана.
-        """
+        """Инициализация змеи в центре экрана."""
         center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
         super().__init__(center, SNAKE_COLOR)
         self.positions = [center]
@@ -134,9 +126,7 @@ class Snake(GameObject):
         return self.positions[0]
 
     def move(self):
-        """
-        Перемещение змейки в текущем направлении
-        """
+        """Перемещение змейки в текущем направлении"""
         headx, heady = self.get_head_position()
         dx, dy = self.direction
         # Обновление позиции головы по модулю чтобы зацикливать экран
@@ -154,9 +144,7 @@ class Snake(GameObject):
             self.last = None
 
     def reset(self):
-        """
-        Сброс змейки в изначальное состояние в центре поля
-        """
+        """Сброс змейки в изначальное состояние в центре поля"""
         screen.fill(BOARD_BACKGROUND_COLOR)  # Очистка фона на сброс
         center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
         self.length = 1
@@ -184,13 +172,12 @@ class Snake(GameObject):
 
 
 def handle_keys(snake):
-    """
-    Обработка нажатий клавиш
-    """
+    """Обработка нажатий клавиш"""
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
+
         elif event.type == pygame.KEYDOWN:
             # Меняем направление змейки в зависимости от нажатой клавиши
             new_direction = DIRECTION_MAP.get(event.key, snake.direction)
@@ -198,9 +185,7 @@ def handle_keys(snake):
 
 
 def main():
-    """
-    Основная функция игры, запускает игровой цикл.
-    """
+    """Основная функция игры, запускает игровой цикл."""
     snake = Snake()
     apple = Apple(snake.positions)
 
