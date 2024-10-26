@@ -72,6 +72,7 @@ class GameObject:
 
 class Apple(GameObject):
     """Класс для представления яблока на игровом поле"""
+
     def __init__(self, occupied_cells):
         super().__init__((0, 0), APPLE_COLOR)
         self.randomize_position(occupied_cells)
