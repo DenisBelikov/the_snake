@@ -228,7 +228,7 @@ def main():
             obstacle.draw()
 
         # Показать оценку
-        pygame.display.set_caption(f'Snake Game - Score: {score},
+        pygame.display.set_caption(f'Snake Game - Score: {score},\
         Record: {record}')
         pygame.display.update()
 
