@@ -56,8 +56,10 @@ class GameObject:
         self.body_color = body_color
 
     def draw(self, screen):
-        """Отрисовка игрового объекта на экране - должен быть переопределен в
-        дочерних классах"""
+        """
+        Отрисовка игрового объекта на экране - должен быть переопределен в
+        дочерних классах
+        """
         raise NotImplementedError
 
     def draw_rect(self, screen, position):
@@ -152,8 +154,10 @@ class Snake(GameObject):
             pygame.draw.rect(screen, BOARD_BACKGROUND_COLOR, last_rect)
 
     def update_direction(self, new_direction):
-        """Обновление направления движения змейки если оно
-        не противоположное текущему"""
+        """
+        Обновление направления движения змейки если оно
+        не противоположное текущему
+        """
         # Не позволяем змейке двигаться в противоположном направлении
         if new_direction != tuple(-x for x in self.direction):
             self.direction = new_direction
@@ -161,7 +165,6 @@ class Snake(GameObject):
 
 def handle_keys(snake):
     """Обработка нажатий клавиш"""
-
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
@@ -175,7 +178,6 @@ def handle_keys(snake):
 
 def main():
     """Основная функция игры, запускает игровой цикл."""
-
     snake = Snake()
     apple = Apple()
 
