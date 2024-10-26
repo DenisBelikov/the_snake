@@ -14,13 +14,13 @@ GRID_SIZE = 20
 GRID_WIDTH = SCREEN_WIDTH // GRID_SIZE
 GRID_HEIGHT = SCREEN_HEIGHT // GRID_SIZE
 
-# Направления движения змейки
+# Направления движения
 UP = (0, -1)
 DOWN = (0, 1)
 LEFT = (-1, 0)
 RIGHT = (1, 0)
 
-# Карта клавиш для управления направлением змеи
+# Карта клавиш для управления направлением
 DIRECTION_MAP = {
     pygame.K_UP: UP,
     pygame.K_DOWN: DOWN,
@@ -37,10 +37,9 @@ SNAKE_COLOR = (0, 255, 0)  # Цвет змейки
 # Скорость игры
 SPEED = 20
 
-# Инициализация Pygame
-pygame.init()
+# Инициализация экрана Pygame
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), 0, 32)
-pygame.display.set_caption('Snake_Game')
+pygame.display.set_caption('Snake Game')
 
 # Настройка времени:
 clock = pygame.time.Clock()
@@ -49,15 +48,11 @@ INITIONAL_POSITION = (0, 0)
 
 
 class GameObject:
-    """Базовый класс для объектов игры."""
+    """Базовый класс для всех игровых объектов."""
 
     def __init__(self, position=INITIONAL_POSITION,
                  body_color=BOARD_BACKGROUND_COLOR):
-        """
-        Инициализация объекта игры.
-        :param position: Кортеж с координатами позиции объекта.
-        :param body_color: Цвет объекта.
-        """
+        """Инициализация игрового объекта с позицией и цветом тела"""
         self.position = position
         self.body_color = body_color
 
@@ -77,26 +72,22 @@ class GameObject:
 
 class Apple(GameObject):
     """Класс для представления яблока на игровом поле"""
-
     def __init__(self, occupied_cells):
-        """
-        Инициализация яблока и его случайное размещение.
-        :param occupied_cells: Список занятых клеток,
-        которые необходимо избежать при размещении яблока.
-        """
         super().__init__((0, 0), APPLE_COLOR)
         self.randomize_position(occupied_cells)
 
     def randomize_position(self, occupied_cells):
         """
-        Случайное размещение яблока в свободной клетке.
-        :param occupied_cells: Список занятых клеток.
+        Случайным образом выбирает новую позицию для яблока,
+        избегая занятых ячеек.
         """
         while True:
+            # Генерация новой случайной позиции
             new_position = (
                 randint(0, GRID_WIDTH - 1) * GRID_SIZE,
                 randint(0, GRID_HEIGHT - 1) * GRID_SIZE
             )
+            # Проверка что данная позиция не занята
             if new_position not in occupied_cells:
                 self.position = new_position
                 break
@@ -107,10 +98,10 @@ class Apple(GameObject):
 
 
 class Snake(GameObject):
-    """Класс, представляющий змею в игре."""
+    """Класс для представления змейки"""
 
     def __init__(self):
-        """Инициализация змеи в центре экрана."""
+        """Инициализация змейки в центре поля"""
         center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
         super().__init__(center, SNAKE_COLOR)
         self.positions = [center]
@@ -119,14 +110,11 @@ class Snake(GameObject):
         self.last = None
 
     def get_head_position(self):
-        """
-        Получение текущей позиции головы змеи.
-        :return: Позиция головы змеи.
-        """
+        """Возвращает позицию головы змейки."""
         return self.positions[0]
 
     def move(self):
-        """Перемещение змейки в текущем направлении"""
+        """Получить текущую позицию головы змейки"""
         headx, heady = self.get_head_position()
         dx, dy = self.direction
         # Обновление позиции головы по модулю чтобы зацикливать экран
@@ -136,7 +124,6 @@ class Snake(GameObject):
         )
         # Добавление новой позиции головы
         self.positions.insert(0, new_head)
-
         # Удаление последней клетки если длина превышает нужную
         if len(self.positions) > self.length:
             self.last = self.positions.pop()
@@ -145,7 +132,7 @@ class Snake(GameObject):
 
     def reset(self):
         """Сброс змейки в изначальное состояние в центре поля"""
-        screen.fill(BOARD_BACKGROUND_COLOR)  # Очистка фона на сброс
+        screen.fill(BOARD_BACKGROUND_COLOR)
         center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
         self.length = 1
         self.positions = [center]
@@ -163,9 +150,8 @@ class Snake(GameObject):
 
     def update_direction(self, new_direction):
         """
-        Обновление направления движения змеи.
-
-        :param new_direction: Новое направление.
+        Обновление направления движения змейки если оно
+        не противоположное текущему
         """
         if new_direction != tuple(-x for x in self.direction):
             self.direction = new_direction
@@ -188,16 +174,12 @@ def main():
     """Основная функция игры, запускает игровой цикл."""
     snake = Snake()
     apple = Apple(snake.positions)
+    screen.fill(BOARD_BACKGROUND_COLOR)
 
-    screen.fill(BOARD_BACKGROUND_COLOR)  # Первоначальная очистка фона
     while True:
         # Контроль скорости игры
         clock.tick(SPEED)
-
-        # Обработка нажатий клавиш
         handle_keys(snake)
-
-        # Перемещение змейки
         snake.move()
 
         # Проверка столкновения с яблоком
@@ -205,12 +187,11 @@ def main():
             snake.length += 1
             apple.randomize_position(snake.positions)
 
-        # Проверка столкновения с самим собой
+            # Проверка столкновения с самим собой
         elif snake.get_head_position() in snake.positions[1:]:
             snake.reset()
-        screen.fill(BOARD_BACKGROUND_COLOR)  # Обновление фона
 
-        # Отрисовка змейки и яблока
+        screen.fill(BOARD_BACKGROUND_COLOR)
         snake.draw()
         apple.draw()
 
