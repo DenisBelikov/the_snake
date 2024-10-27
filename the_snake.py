@@ -49,23 +49,23 @@ INITIONAL_POSITION = (0, 0)
 
 
 class GameObject:
-    """Базовый класс игрового объекта""" 
+    """Базовый класс игрового объекта"""
 
     def __init__(self, position=INITIONAL_POSITION,
                  body_color=BOARD_BACKGROUND_COLOR):
-        """Инициализация игрового объекта с позицией и цветом тела""" 
+        """Инициализация игрового объекта с позицией и цветом тела"""
         self.position = position
         self.body_color = body_color
 
     def draw(self):
-        """ 
-        Отрисовка игрового объекта на экране - должен быть переопределен в 
-        дочерних классах 
+        """
+        Отрисовка игрового объекта на экране - должен быть переопределен в
+        дочерних классах
         """
         raise NotImplementedError
 
     def draw_rect(self, position):
-        """Отрисовка прямоугольника для объекта на указанной позиции""" 
+        """Отрисовка прямоугольника для объекта на указанной позиции"""
         rect = pygame.Rect(position, (GRID_SIZE, GRID_SIZE))
         pygame.draw.rect(screen, self.body_color, rect)
         pygame.draw.rect(screen, BORDER_COLOR, rect, 1)
@@ -80,7 +80,7 @@ class Apple(GameObject):
         self.randomize_position(snake.positions)
 
     def randomize_position(self, occupied_cells):
-        """Установка позиции яблока вне занятых клеток""" 
+        """Установка позиции яблока вне занятых клеток"""
         while True:
             # Генерация новой случайной позиции
             new_position = (
@@ -88,12 +88,12 @@ class Apple(GameObject):
                 randint(0, GRID_HEIGHT - 1) * GRID_SIZE
             )
             if new_position not in occupied_cells:
-                # Проверка что данная позиция не занята 
+                # Проверка что данная позиция не занята
                 self.position = new_position
                 break
 
     def draw(self):
-        """Отрисовка яблока на экране""" 
+        """Отрисовка яблока на экране"""
         self.draw_rect(self.position)
 
 
@@ -115,7 +115,7 @@ class Snake(GameObject):
         return self.positions[0]
 
     def move(self):
-        """Перемещение змейки в текущем направлении""" 
+        """Перемещение змейки в текущем направлении"""
         headx, heady = self.get_head_position()
         dx, dy = self.direction
 
@@ -141,7 +141,7 @@ class Snake(GameObject):
         self.last = None
 
     def draw(self):
-        """Отрисовка змейки на экране""" 
+        """Отрисовка змейки на экране"""
         # Рисование всех частей тела
         for position in self.positions:
             self.draw_rect(position)
