@@ -45,17 +45,17 @@ pygame.display.set_caption('Snake Game')
 # Настройка времени:
 clock = pygame.time.Clock()
 
-INITIONAL_POSITION = (0, 0)
+INITIAL_POSITION = (0, 0)
 
 
 class GameObject:
     """Базовый класс игрового объекта"""
 
-    def __init__(self, position=INITIONAL_POSITION,
-                 body_color=BOARD_BACKGROUND_COLOR):
+    def __init__(self, position=INITIAL_POSITION,
+                 color=BOARD_BACKGROUND_COLOR):
         """Инициализация игрового объекта с позицией и цветом тела"""
         self.position = position
-        self.body_color = body_color
+        self.color = color
 
     def draw(self):
         """
@@ -67,22 +67,21 @@ class GameObject:
     def draw_rect(self, position):
         """Отрисовка прямоугольника для объекта на указанной позиции"""
         rect = pygame.Rect(position, (GRID_SIZE, GRID_SIZE))
-        pygame.draw.rect(screen, self.body_color, rect)
+        pygame.draw.rect(screen, self.color, rect)
         pygame.draw.rect(screen, BORDER_COLOR, rect, 1)
 
 
 class Apple(GameObject):
     """Класс для представления яблока на игровом поле"""
 
-    def __init__(self, snake=None, color=APPLE_COLOR):
+    def __init__(self, occupied_positions=None, color=APPLE_COLOR):
         """Инициализация яблока и установка его в случайную позицию"""
-        super().__init__(body_color=color)
-        if snake is not None:
-            self.randomize_position(snake.positions)
-        else:
-            self.position = (0, 0)
+        super().__init__(color=color)
+        if occupied_positions is None:
+            occupied_positions = []
+        self.randomize_position(occupied_positions)
 
-    def randomize_position(self, occupied_cells):
+    def randomize_position(self, occupied_positions):
         """Установка позиции яблока вне занятых клеток"""
         while True:
             # Генерация новой случайной позиции
@@ -90,7 +89,7 @@ class Apple(GameObject):
                 randint(0, GRID_WIDTH - 1) * GRID_SIZE,
                 randint(0, GRID_HEIGHT - 1) * GRID_SIZE
             )
-            if new_position not in occupied_cells:
+            if new_position not in occupied_positions:
                 # Проверка что данная позиция не занята
                 self.position = new_position
                 break
@@ -177,7 +176,7 @@ def handle_keys(snake):
 def main():
     """Основная функция игры, запускает игровой цикл."""
     snake = Snake()
-    apple = Apple(snake)
+    apple = Apple(snake.positions)
     screen.fill(BOARD_BACKGROUND_COLOR)
 
     while True:
