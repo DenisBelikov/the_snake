@@ -74,10 +74,13 @@ class GameObject:
 class Apple(GameObject):
     """Класс для представления яблока на игровом поле"""
 
-    def __init__(self, snake, color=APPLE_COLOR):
+    def __init__(self, snake=None, color=APPLE_COLOR):
         """Инициализация яблока и установка его в случайную позицию"""
         super().__init__(body_color=color)
-        self.randomize_position(snake.positions)
+        if snake is not None:
+            self.randomize_position(snake.positions)
+        else:
+            self.position = (0, 0)
 
     def randomize_position(self, occupied_cells):
         """Установка позиции яблока вне занятых клеток"""
