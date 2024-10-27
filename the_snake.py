@@ -52,10 +52,10 @@ class GameObject:
     """Базовый класс игрового объекта"""
 
     def __init__(self, position=INITIAL_POSITION,
-                 color=BOARD_BACKGROUND_COLOR):
+                 body_color=BOARD_BACKGROUND_COLOR):
         """Инициализация игрового объекта с позицией и цветом тела"""
         self.position = position
-        self.color = color
+        self.color = body_color
 
     def draw(self):
         """
@@ -74,9 +74,9 @@ class GameObject:
 class Apple(GameObject):
     """Класс для представления яблока на игровом поле"""
 
-    def __init__(self, occupied_positions=None, color=APPLE_COLOR):
+    def __init__(self, occupied_positions=None, body_color=APPLE_COLOR):
         """Инициализация яблока и установка его в случайную позицию"""
-        super().__init__(color=color)
+        super().__init__(body_color=body_color)
         if occupied_positions is None:
             occupied_positions = []
         self.randomize_position(occupied_positions)
@@ -102,11 +102,11 @@ class Apple(GameObject):
 class Snake(GameObject):
     """Класс для представления змейки"""
 
-    def __init__(self, position=None, color=SNAKE_COLOR):
+    def __init__(self, position=None, body_color=SNAKE_COLOR):
         """Инициализация змейки в центре поля"""
         if position is None:
             position = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
-        super().__init__(position, color)
+        super().__init__(position, body_color)
         self.positions = [position]
         self.direction = choice([UP, DOWN, LEFT, RIGHT])
         self.length = 1
