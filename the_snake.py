@@ -55,7 +55,7 @@ class GameObject:
                  body_color=BOARD_BACKGROUND_COLOR):
         """Инициализация игрового объекта с позицией и цветом тела"""
         self.position = position
-        self.color = body_color
+        self.body_color = body_color
 
     def draw(self):
         """
@@ -67,16 +67,16 @@ class GameObject:
     def draw_rect(self, position):
         """Отрисовка прямоугольника для объекта на указанной позиции"""
         rect = pygame.Rect(position, (GRID_SIZE, GRID_SIZE))
-        pygame.draw.rect(screen, self.color, rect)
+        pygame.draw.rect(screen, self.body_color, rect)
         pygame.draw.rect(screen, BORDER_COLOR, rect, 1)
 
 
 class Apple(GameObject):
     """Класс для представления яблока на игровом поле"""
 
-    def __init__(self, occupied_positions=None, body_color=APPLE_COLOR):
+    def __init__(self, occupied_positions=None, color=APPLE_COLOR):
         """Инициализация яблока и установка его в случайную позицию"""
-        super().__init__(body_color=body_color)
+        super().__init__(body_color=color)
         if occupied_positions is None:
             occupied_positions = []
         self.randomize_position(occupied_positions)
@@ -102,11 +102,11 @@ class Apple(GameObject):
 class Snake(GameObject):
     """Класс для представления змейки"""
 
-    def __init__(self, position=None, body_color=SNAKE_COLOR):
+    def __init__(self, position=None, color=SNAKE_COLOR):
         """Инициализация змейки в центре поля"""
         if position is None:
             position = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
-        super().__init__(position, body_color)
+        super().__init__(position, color)
         self.positions = [position]
         self.direction = choice([UP, DOWN, LEFT, RIGHT])
         self.length = 1
